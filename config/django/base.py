@@ -21,6 +21,7 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
 # Application definition
 LOCAL_APPS = [
     'applications.user',
+    'applications.support_user',
     'applications.authentication',
 ]
 
@@ -36,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.messages',
+    'django.contrib.sessions',
     'django.contrib.staticfiles',
     *THIRD_PARTY_APPS,
     *LOCAL_APPS,
@@ -111,11 +113,14 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fa-ir'
 
 TIME_ZONE = 'UTC'
 
+# USE_TZ = True
+
 USE_I18N = True
+USE_L10N = True
 
 USE_TZ = True
 
@@ -129,8 +134,9 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-AUTH_USER_MODEL = "applications_user.User"
+AUTH_USER_MODEL = "applications_support_user.SupportUser"
 
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 
 from config.settings.cors import *  # noqa
 from config.settings.drf import *  # noqa
@@ -138,4 +144,4 @@ from config.settings.swagger import *  # noqa
 from config.settings.logging import *  # noqa
 from config.settings.tracing import *  # noqa
 from config.settings.jwt import *  # noqa
-# from config.settings.caches import *  # noqad
+from config.settings.caches import *  # noqad
