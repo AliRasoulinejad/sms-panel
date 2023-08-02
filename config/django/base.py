@@ -23,6 +23,7 @@ LOCAL_APPS = [
     'applications.user',
     'applications.support_user',
     'applications.authentication',
+    'applications.phone_numbers',
 ]
 
 THIRD_PARTY_APPS = [
