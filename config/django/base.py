@@ -24,6 +24,7 @@ LOCAL_APPS = [
     'apps.support_user',
     'apps.authentication',
     'apps.senders',
+    'apps.payments',
 ]
 
 THIRD_PARTY_APPS = [
