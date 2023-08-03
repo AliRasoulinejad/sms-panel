@@ -23,6 +23,7 @@ LOCAL_APPS = [
     'apps.user',
     'apps.support_user',
     'apps.authentication',
+    'apps.message',
     'apps.phonebook',
     'apps.senders',
     'apps.payments',
