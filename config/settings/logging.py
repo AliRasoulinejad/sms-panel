@@ -23,7 +23,7 @@ LOGGING = {
             'level': LOGLEVEL,
             'propagate': False,
         },
-        'applications': {
+        'apps': {
             'handlers': ['console'],
             'level': LOGLEVEL,
             'propagate': True,

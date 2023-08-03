@@ -3,7 +3,7 @@ from django.db import models
 from django_prometheus.models import ExportModelOperationsMixin
 from result import Ok, Err
 
-from applications.common.models import BaseModel
+from apps.common.models import BaseModel
 
 
 class UserManager(models.Manager):
@@ -26,8 +26,8 @@ class User(ExportModelOperationsMixin('user'), BaseModel):
 
     class Meta:
         db_table = "users"
-        verbose_name = "user"
-        verbose_name_plural = "users"
+        verbose_name = "کاربر"
+        verbose_name_plural = "کاربران"
 
     def __str__(self):
         return self.cellphone

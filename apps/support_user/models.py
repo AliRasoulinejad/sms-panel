@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django_prometheus.models import ExportModelOperationsMixin
 
-from applications.common.models import BaseModel
+from apps.common.models import BaseModel
 
 
 class SupportUser(ExportModelOperationsMixin('support_user'), AbstractUser, BaseModel):

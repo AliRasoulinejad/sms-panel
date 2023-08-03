@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class AuthenticationConfig(AppConfig):
-    name = 'applications.authentication'
+    name = 'apps.authentication'

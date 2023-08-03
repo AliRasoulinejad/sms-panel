@@ -20,10 +20,10 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
 
 # Application definition
 LOCAL_APPS = [
-    'applications.user',
-    'applications.support_user',
-    'applications.authentication',
-    'applications.senders',
+    'apps.user',
+    'apps.support_user',
+    'apps.authentication',
+    'apps.senders',
 ]
 
 THIRD_PARTY_APPS = [
@@ -135,7 +135,7 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-AUTH_USER_MODEL = "applications_support_user.SupportUser"
+AUTH_USER_MODEL = "apps_support_user.SupportUser"
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 

@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('applications_user', '0001_initial'),
+        ('apps_user', '0001_initial'),
     ]
 
     operations = [
@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('number', models.CharField(db_index=True, max_length=20, unique=True)),
                 ('status', models.PositiveSmallIntegerField(choices=[(0, 'Requested'), (1, 'Senttoprovider'), (2, 'Rejected'), (3, 'Accepted'), (4, 'Rejectedbyprovider')], default=0)),
-                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='applications_user.user')),
+                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='apps_user.user')),
             ],
             options={
                 'verbose_name': 'سرشماره',

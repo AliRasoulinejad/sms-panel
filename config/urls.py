@@ -12,7 +12,7 @@ urlpatterns = [
     path("", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
     path("schema", SpectacularAPIView.as_view(), name="schema"),
     path('admin/', admin.site.urls, name="admin"),
-    path('api/', include(("applications.api.urls", "apis"))),
+    path('api/', include(("apps.api.urls", "apis"))),
     path("metrics", exports.ExportToDjangoView, name="prometheus-django-metrics"),
 ]
 
