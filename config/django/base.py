@@ -24,9 +24,10 @@ LOCAL_APPS = [
     'apps.support_user',
     'apps.authentication',
     'apps.message',
+    'apps.notification',
+    'apps.payments',
     'apps.phonebook',
     'apps.senders',
-    'apps.payments',
 ]
 
 THIRD_PARTY_APPS = [
@@ -149,3 +150,4 @@ from config.settings.logging import *  # noqa
 from config.settings.tracing import *  # noqa
 from config.settings.jwt import *  # noqa
 from config.settings.caches import *  # noqad
+from config.settings.sms_modules import *  # noqad
