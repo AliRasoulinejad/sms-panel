@@ -4,7 +4,7 @@ from .enums import PersonTypeEnum
 from .models import User, cellphone_validator
 
 
-class InputRegisterSerializer(serializers.Serializer):
+class InputUserRegisterSerializer(serializers.Serializer):
     cellphone = serializers.CharField(required=True, validators=[cellphone_validator])
     first_name = serializers.CharField(required=True, allow_blank=False)
     last_name = serializers.CharField(required=True, allow_blank=False)
@@ -23,7 +23,7 @@ class InputRegisterSerializer(serializers.Serializer):
         return agreement
 
 
-class OutputRegisterSerializer(serializers.ModelSerializer):
+class OutputUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ("cellphone", "first_name", "last_name", "email", "person_type")
