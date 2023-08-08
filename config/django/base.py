@@ -122,12 +122,10 @@ LANGUAGE_CODE = 'fa-ir'
 
 TIME_ZONE = 'UTC'
 
-# USE_TZ = True
-
 USE_I18N = True
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

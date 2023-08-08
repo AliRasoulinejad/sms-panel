@@ -1,10 +1,9 @@
-from django.contrib.auth.hashers import make_password
-from django.core.validators import RegexValidator
+from datetime import datetime
 
+from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.regex_helper import _lazy_re_compile
 from django_prometheus.models import ExportModelOperationsMixin
-from result import Ok, Err
 
 from apps.common.models import BaseModel
 from apps.user.enums import PersonTypeEnum, StatusEnum
@@ -27,7 +26,9 @@ class UserManager(models.Manager):
 
 
 class User(ExportModelOperationsMixin('user'), BaseModel):
-    cellphone = models.CharField("cellphone", max_length=13, unique=True, db_index=True, validators=[cellphone_validator])
+    cellphone = models.CharField(
+        "cellphone", max_length=13, unique=True, db_index=True, validators=[cellphone_validator]
+    )
     first_name = models.CharField("first name", max_length=150, blank=True)
     last_name = models.CharField("last name", max_length=150, blank=True)
     email = models.EmailField("email", null=True, blank=True)
@@ -36,6 +37,7 @@ class User(ExportModelOperationsMixin('user'), BaseModel):
     )
     status = models.PositiveSmallIntegerField("status", choices=StatusEnum.choices, default=StatusEnum.Deactivate)
     legal_data = models.JSONField("authorization", default=dict)
+    last_login = models.DateTimeField(default=datetime.now)
 
     objects = UserManager()
 

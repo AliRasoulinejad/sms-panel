@@ -6,17 +6,20 @@ from apps.notification.models import Notification, NotifType
 class AbstractSMSTemplate(ABC):
     template = ""
 
-    def __prepare_message(self, **kwargs) -> str:
-        message = self.template
+    @classmethod
+    def __prepare_message(cls, **kwargs) -> str:
+        message = cls.template
         for key, value in kwargs.items():
             message = message.replace(f"{[key]}", str(value))
 
         return message
 
-    def send(self, *, cellphone: str, **kwargs):
-        message = self.__prepare_message(**kwargs)
+    @classmethod
+    def send(cls, *, user_id: int, cellphone: str, **kwargs):
+        message = cls.__prepare_message(**kwargs)
         Notification.objects.create(
             notif_type=NotifType.SMS,
+            user_id=user_id,
             data={
                 "cellphone": cellphone,
                 "message": message,
