@@ -1,11 +1,11 @@
 import logging
 
 from drf_spectacular.utils import extend_schema
+from rest_framework.fields import empty
 from rest_framework.response import Response
 from rest_framework.status import HTTP_204_NO_CONTENT, HTTP_400_BAD_REQUEST
 from rest_framework.views import APIView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework_simplejwt.settings import api_settings
 
 from apps.user.models import User
 from apps.user.services.commands import user_update_last_login
@@ -19,7 +19,7 @@ class JWTSendOTP(APIView):
     authentication_classes = []
     permission_classes = []
 
-    @extend_schema(request=InputSendOTPSerializer, tags=["authentication"])
+    @extend_schema(request=InputSendOTPSerializer, responses=empty, tags=["authentication"])
     def post(self, request):
         serializer = InputSendOTPSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)

@@ -1,9 +1,10 @@
 import os
 
 import django
-from config.env import env, BASE_DIR
 from django.utils.encoding import smart_str
 from django.utils.translation import gettext
+
+from config.env import env, BASE_DIR
 
 django.utils.encoding.smart_text = smart_str
 django.utils.translation.ugettext = gettext
@@ -23,6 +24,7 @@ LOCAL_APPS = [
     'apps.user',
     'apps.support_user',
     'apps.authentication',
+    'apps.common',
     'apps.message',
     'apps.notification',
     'apps.payments',

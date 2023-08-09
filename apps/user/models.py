@@ -53,3 +53,7 @@ class User(ExportModelOperationsMixin('user'), BaseModel):
     def full_name(self):
         full_name = f"{self.first_name} {self.last_name}"
         return full_name.strip()
+
+    @property
+    def is_authenticated(self):
+        return True
