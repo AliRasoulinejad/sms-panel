@@ -8,19 +8,11 @@ ENV  PYTHONFAULTHANDLER=1 \
 ENV PIP_NO_CACHE_DIR=off \
   PIP_DISABLE_PIP_VERSION_CHECK=on \
   PIP_DEFAULT_TIMEOUT=100
-  # poetry:
-ENV POETRY_VERSION=1.5.1 \
-  POETRY_VIRTUALENVS_CREATE=false \
-  POETRY_CACHE_DIR='/var/cache/pypoetry'
-
-RUN pip install --with local "poetry==$POETRY_VERSION" && poetry --version
 
 # set work directory
 WORKDIR /code
-COPY pyproject.toml /code/
+COPY requirements.txt /code/
 
-# Install dependencies:
-RUN poetry install
-
+RUN pip install -r requirements.txt
 # copy project
 COPY . .
