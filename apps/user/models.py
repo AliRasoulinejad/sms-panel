@@ -1,18 +1,11 @@
 from datetime import datetime
 
-from django.core.validators import RegexValidator
 from django.db import models
-from django.utils.regex_helper import _lazy_re_compile
 from django_prometheus.models import ExportModelOperationsMixin
 
 from apps.common.models import BaseModel
 from apps.user.enums import PersonTypeEnum, StatusEnum
-
-cellphone_validator = RegexValidator(
-    _lazy_re_compile(r"^\+989\d{9}$"),
-    message="Enter a valid cellphone",
-    code="invalid",
-)
+from apps.utils.validators import cellphone_validator
 
 
 class UserManager(models.Manager):

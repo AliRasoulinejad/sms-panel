@@ -6,7 +6,7 @@ from apps.payments.enums import StatusEnum, GatewayEnum
 
 
 class Payment(ExportModelOperationsMixin('payment'), BaseModel):
-    uid = models.CharField(unique=True, db_index=True)
+    uid = models.CharField(max_length=20, unique=True, db_index=True)
     status = models.PositiveSmallIntegerField(choices=StatusEnum.choices, default=StatusEnum.Draft)
     amount = models.PositiveIntegerField()
     user = models.ForeignKey("apps_user.User", on_delete=models.CASCADE)
