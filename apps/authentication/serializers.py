@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from apps.user.models import User, cellphone_validator
+from apps.user.models import User
+from apps.utils.validators import cellphone_validator
 
 
 class InputSendOTPSerializer(serializers.Serializer):

@@ -6,14 +6,14 @@ from apps.notification.models import Notification
 from apps.notification.seeder import NotificationFactory
 from apps.payments.models import Payment
 from apps.payments.seeder import PaymentFactory
-from apps.phonebook.models import Phone
-from apps.phonebook.seeder import PhoneFactory
+from apps.phonebook.models import Phone, PhoneGroup
+from apps.phonebook.tests.factories import PhoneFactory, PhoneGroupFactory
 from apps.senders.models import Sender
 from apps.senders.seeder import SenderFactory
 from apps.support_user.models import SupportUser
 from apps.support_user.seeder import SupportUserFactory
 from apps.user.models import User
-from apps.user.seeder import UserFactory
+from apps.user.tests.factories import UserFactory
 
 
 class Command(BaseCommand):
@@ -31,6 +31,10 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS('Database seeded with sender successfully'))
 
         Phone.objects.bulk_create(PhoneFactory.build_batch(self.default_number))
+        self.stdout.write(self.style.SUCCESS('Database seeded with phone successfully'))
+
+        pg = PhoneGroup.objects.bulk_create(PhoneGroupFactory.build_batch(1))
+        pg[0].members.add(*Phone.objects.all())
         self.stdout.write(self.style.SUCCESS('Database seeded with phone successfully'))
 
         Payment.objects.bulk_create(PaymentFactory.build_batch(self.default_number))

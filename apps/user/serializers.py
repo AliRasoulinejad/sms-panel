@@ -1,7 +1,8 @@
 from rest_framework import serializers
 
+from apps.utils.validators import cellphone_validator
 from .enums import PersonTypeEnum
-from .models import User, cellphone_validator
+from .models import User
 
 
 class InputUserRegisterSerializer(serializers.Serializer):
