@@ -6,6 +6,4 @@ router = DefaultRouter()
 router.register("phones", PhoneCRUDApi, "phones")
 router.register("phone-groups", PhoneGroupCRUDApi, "phone-groups")
 
-urlpatterns = router.urls + [
-
-]
+urlpatterns = router.urls + []

@@ -44,10 +44,7 @@ class JWTVerifyOTP(APIView):
 
         user = User.objects.get(cellphone=data["cellphone"])
         refresh = TokenObtainPairSerializer.get_token(user)
-        data = {
-            "refresh": str(refresh),
-            "access": str(refresh.access_token)
-        }
+        data = {"refresh": str(refresh), "access": str(refresh.access_token)}
         result = OutputVerifyOTPSerializer(data=data, context={"request": request})
         result.is_valid(raise_exception=True)
         user_update_last_login(user_id=user.id)

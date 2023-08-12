@@ -10,40 +10,48 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('apps_user', '0002_user_last_login'),
+        ("apps_user", "0002_user_last_login"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='IncomingMessage',
+            name="IncomingMessage",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('message', models.TextField()),
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("message", models.TextField()),
             ],
             options={
-                'verbose_name': 'پیام ورودی',
-                'verbose_name_plural': 'پیام\u200cهای ورودی',
-                'db_table': 'incoming_messages',
+                "verbose_name": "پیام ورودی",
+                "verbose_name_plural": "پیام\u200cهای ورودی",
+                "db_table": "incoming_messages",
             },
-            bases=(django_prometheus.models.ExportModelOperationsMixin('incoming_message'), models.Model),
+            bases=(django_prometheus.models.ExportModelOperationsMixin("incoming_message"), models.Model),
         ),
         migrations.CreateModel(
-            name='OutgoingMessage',
+            name="OutgoingMessage",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('message', models.TextField()),
-                ('status', models.PositiveSmallIntegerField(choices=[(0, 'Draft'), (1, 'Sent'), (2, 'Cancel'), (3, 'Reject')], default=0)),
-                ('owner', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='apps_user.user')),
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("message", models.TextField()),
+                (
+                    "status",
+                    models.PositiveSmallIntegerField(
+                        choices=[(0, "Draft"), (1, "Sent"), (2, "Cancel"), (3, "Reject")], default=0
+                    ),
+                ),
+                (
+                    "owner",
+                    models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to="apps_user.user"),
+                ),
             ],
             options={
-                'verbose_name': 'پیام خروجی',
-                'verbose_name_plural': 'پیام\u200cهای خروجی',
-                'db_table': 'outgoing_messages',
+                "verbose_name": "پیام خروجی",
+                "verbose_name_plural": "پیام\u200cهای خروجی",
+                "db_table": "outgoing_messages",
             },
-            bases=(django_prometheus.models.ExportModelOperationsMixin('outgoing_message'), models.Model),
+            bases=(django_prometheus.models.ExportModelOperationsMixin("outgoing_message"), models.Model),
         ),
     ]

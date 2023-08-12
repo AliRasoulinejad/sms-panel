@@ -1,7 +1,7 @@
 from apps.utils.sms_modules import MagfaSMSModule
 from config.env import env
 
-sms_module_type = env.str('SMS_MODULE_TYPE', default='')
+sms_module_type = env.str("SMS_MODULE_TYPE", default="")
 
 sms_module = {
     "MAGFA": MagfaSMSModule(

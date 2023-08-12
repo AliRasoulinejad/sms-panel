@@ -4,6 +4,7 @@ from django.dispatch import receiver
 from apps.notification.models import Notification
 from .services.command import notification_send
 
+
 @receiver(post_save, sender=Notification)
 def update_profile(sender, created, instance, **kwargs) -> Notification:
     if created:

@@ -5,7 +5,7 @@ from apps.common.models import BaseModel
 from apps.payments.enums import StatusEnum, GatewayEnum
 
 
-class Payment(ExportModelOperationsMixin('payment'), BaseModel):
+class Payment(ExportModelOperationsMixin("payment"), BaseModel):
     uid = models.CharField(max_length=20, unique=True, db_index=True)
     status = models.PositiveSmallIntegerField(choices=StatusEnum.choices, default=StatusEnum.Draft)
     amount = models.PositiveIntegerField()

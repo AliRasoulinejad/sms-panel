@@ -13,51 +13,62 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('apps_user', '0002_user_last_login'),
+        ("apps_user", "0002_user_last_login"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Phone',
+            name="Phone",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('name', models.CharField(blank=True, max_length=50)),
-                ('phone', models.CharField(editable=False, max_length=13, validators=[django.core.validators.RegexValidator(re.compile('^\\+989\\d{9}$'), code='invalid', message='Enter a valid cellphone')])),
-                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='apps_user.user')),
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("name", models.CharField(blank=True, max_length=50)),
+                (
+                    "phone",
+                    models.CharField(
+                        editable=False,
+                        max_length=13,
+                        validators=[
+                            django.core.validators.RegexValidator(
+                                re.compile("^\\+989\\d{9}$"), code="invalid", message="Enter a valid cellphone"
+                            )
+                        ],
+                    ),
+                ),
+                ("owner", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to="apps_user.user")),
             ],
             options={
-                'verbose_name': 'شماره موبایل',
-                'verbose_name_plural': 'شماره موبایل ها',
-                'db_table': 'phones',
+                "verbose_name": "شماره موبایل",
+                "verbose_name_plural": "شماره موبایل ها",
+                "db_table": "phones",
             },
-            bases=(django_prometheus.models.ExportModelOperationsMixin('phone'), models.Model),
+            bases=(django_prometheus.models.ExportModelOperationsMixin("phone"), models.Model),
         ),
         migrations.CreateModel(
-            name='PhoneGroup',
+            name="PhoneGroup",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('name', models.CharField(max_length=50)),
-                ('members_count', models.PositiveIntegerField(default=0)),
-                ('members', models.ManyToManyField(related_query_name='groups', to='apps_phonebook.phone')),
-                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='apps_user.user')),
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("name", models.CharField(max_length=50)),
+                ("members_count", models.PositiveIntegerField(default=0)),
+                ("members", models.ManyToManyField(related_query_name="groups", to="apps_phonebook.phone")),
+                ("owner", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to="apps_user.user")),
             ],
             options={
-                'verbose_name': 'گروه',
-                'verbose_name_plural': 'گروه\u200cها',
-                'db_table': 'groups',
+                "verbose_name": "گروه",
+                "verbose_name_plural": "گروه\u200cها",
+                "db_table": "groups",
             },
-            bases=(django_prometheus.models.ExportModelOperationsMixin('phone_group'), models.Model),
+            bases=(django_prometheus.models.ExportModelOperationsMixin("phone_group"), models.Model),
         ),
         migrations.AddIndex(
-            model_name='phone',
-            index=models.Index(models.F('phone'), models.F('owner_id'), name='idx_phones_phone_owner_id'),
+            model_name="phone",
+            index=models.Index(models.F("phone"), models.F("owner_id"), name="idx_phones_phone_owner_id"),
         ),
         migrations.AlterUniqueTogether(
-            name='phone',
-            unique_together={('phone', 'owner')},
+            name="phone",
+            unique_together={("phone", "owner")},
         ),
     ]

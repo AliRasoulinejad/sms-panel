@@ -12,6 +12,7 @@ class InputSendOTPSerializer(serializers.Serializer):
             raise serializers.ValidationError("cellphone already exist")
         return cellphone
 
+
 class InputVerifyOTPSerializer(serializers.Serializer):
     cellphone = serializers.CharField(required=True, validators=[cellphone_validator])
     code = serializers.CharField(required=True, allow_blank=False)

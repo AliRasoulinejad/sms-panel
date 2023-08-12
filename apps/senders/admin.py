@@ -5,4 +5,7 @@ from .models import Sender
 
 @admin.register(Sender)
 class SenderAdmin(admin.ModelAdmin):
-    list_display = ("number", "status",)
+    list_display = (
+        "number",
+        "status",
+    )
