@@ -21,6 +21,12 @@ repos:
 
   - repo: local
     hooks:
+      - id: poetry-lock
+        name: Poetry lock
+        language: system
+        pass_filenames: false
+        entry: poetry lock
+        files: ^(pyproject.toml|poetry.lock)$
       - id: export-requirements
         name: Export requirements.txt
         language: system
