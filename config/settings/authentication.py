@@ -20,9 +20,7 @@ class JWTAuthentication(BaseJWTAuthentication):
         try:
             user_id = validated_token[api_settings.USER_ID_CLAIM]
         except KeyError as e:
-            raise InvalidToken(
-                "Token contained no recognizable user identification"
-            ) from e
+            raise InvalidToken("Token contained no recognizable user identification") from e
 
         try:
             user = self.user_model.objects.get(**{api_settings.USER_ID_FIELD: user_id})

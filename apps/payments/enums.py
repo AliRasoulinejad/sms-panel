@@ -7,5 +7,6 @@ class StatusEnum(models.IntegerChoices):
     Accepted = 2
     Rejected = 3
 
+
 class GatewayEnum(models.IntegerChoices):
     Mellat = 1

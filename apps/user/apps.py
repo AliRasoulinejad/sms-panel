@@ -2,7 +2,7 @@ from django.apps import AppConfig
 
 
 class UserConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
+    default_auto_field = "django.db.models.BigAutoField"
     name = "apps.user"
     label = "apps_user"
     verbose_name = "کاربران"

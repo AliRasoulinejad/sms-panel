@@ -23,4 +23,5 @@ class AbstractSMSTemplate(ABC):
             data={
                 "cellphone": cellphone,
                 "message": message,
-            })
+            },
+        )

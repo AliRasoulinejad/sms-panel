@@ -13,7 +13,8 @@ def authentication_send_otp(*, cellphone: str):
     cache.set(f"token:{cellphone}", str(token), timeout=token_ttl * 60)
     TokenSMSTemplate.send(user_id=u.id, cellphone=u.cellphone, code=token)
 
+
 def authentication_verify_otp(*, cellphone: str, code: str) -> bool:
     token = cache.get(f"token:{cellphone}")
 
-    return token==code
+    return token == code

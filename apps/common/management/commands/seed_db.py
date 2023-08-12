@@ -17,31 +17,31 @@ from apps.user.tests.factories import UserFactory
 
 
 class Command(BaseCommand):
-    help = 'Seed the database with random data'
+    help = "Seed the database with random data"
     default_number = 3
 
     def handle(self, *args, **options):
         User.objects.bulk_create(UserFactory.build_batch(self.default_number))
-        self.stdout.write(self.style.SUCCESS('Database seeded with user successfully'))
+        self.stdout.write(self.style.SUCCESS("Database seeded with user successfully"))
 
         SupportUser.objects.bulk_create(SupportUserFactory.build_batch(self.default_number))
-        self.stdout.write(self.style.SUCCESS('Database seeded with support_user successfully'))
+        self.stdout.write(self.style.SUCCESS("Database seeded with support_user successfully"))
 
         Sender.objects.bulk_create(SenderFactory.build_batch(self.default_number))
-        self.stdout.write(self.style.SUCCESS('Database seeded with sender successfully'))
+        self.stdout.write(self.style.SUCCESS("Database seeded with sender successfully"))
 
         Phone.objects.bulk_create(PhoneFactory.build_batch(self.default_number))
-        self.stdout.write(self.style.SUCCESS('Database seeded with phone successfully'))
+        self.stdout.write(self.style.SUCCESS("Database seeded with phone successfully"))
 
         pg = PhoneGroup.objects.bulk_create(PhoneGroupFactory.build_batch(1))
         pg[0].members.add(*Phone.objects.all())
-        self.stdout.write(self.style.SUCCESS('Database seeded with phone successfully'))
+        self.stdout.write(self.style.SUCCESS("Database seeded with phone successfully"))
 
         Payment.objects.bulk_create(PaymentFactory.build_batch(self.default_number))
-        self.stdout.write(self.style.SUCCESS('Database seeded with payment successfully'))
+        self.stdout.write(self.style.SUCCESS("Database seeded with payment successfully"))
 
         Notification.objects.bulk_create(NotificationFactory.build_batch(self.default_number))
-        self.stdout.write(self.style.SUCCESS('Database seeded with notification successfully'))
+        self.stdout.write(self.style.SUCCESS("Database seeded with notification successfully"))
 
         OutgoingMessage.objects.bulk_create(OutgoingMessageFactory.build_batch(self.default_number))
-        self.stdout.write(self.style.SUCCESS('Database seeded with outgoing_message successfully'))
+        self.stdout.write(self.style.SUCCESS("Database seeded with outgoing_message successfully"))

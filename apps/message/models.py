@@ -5,7 +5,7 @@ from apps.common.models import BaseModel
 from apps.message.enums import MessageStatus
 
 
-class OutgoingMessage(ExportModelOperationsMixin('outgoing_message'), BaseModel):
+class OutgoingMessage(ExportModelOperationsMixin("outgoing_message"), BaseModel):
     message = models.TextField()
     receiver = models.ForeignKey("apps_phonebook.Phone", on_delete=models.SET_NULL, null=True)
     sender = models.ForeignKey("apps_sender.Sender", on_delete=models.SET_NULL, null=True)
@@ -18,7 +18,7 @@ class OutgoingMessage(ExportModelOperationsMixin('outgoing_message'), BaseModel)
         verbose_name_plural = "پیام‌های خروجی"
 
 
-class IncomingMessage(ExportModelOperationsMixin('incoming_message'), BaseModel):
+class IncomingMessage(ExportModelOperationsMixin("incoming_message"), BaseModel):
     message = models.TextField()
     sender = models.ForeignKey("apps_sender.Sender", on_delete=models.SET_NULL, null=True)
     owner = models.ForeignKey("apps_user.User", on_delete=models.SET_NULL, null=True)

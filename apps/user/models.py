@@ -18,7 +18,7 @@ class UserManager(models.Manager):
         return user
 
 
-class User(ExportModelOperationsMixin('user'), BaseModel):
+class User(ExportModelOperationsMixin("user"), BaseModel):
     cellphone = models.CharField(
         "cellphone", max_length=13, unique=True, db_index=True, validators=[cellphone_validator]
     )

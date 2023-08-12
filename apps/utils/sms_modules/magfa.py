@@ -10,20 +10,20 @@ class MagfaSMSModule(AbstractSMSModule):
         self.headers = self._prepare_headers()
 
     def _prepare_authorization_header(self, username, password, domain):
-        return f'{username}/{domain}', password
+        return f"{username}/{domain}", password
 
     def _prepare_headers(self):
         return {
-            'accept': "application/json",
-            'cache-control': "no-cache",
+            "accept": "application/json",
+            "cache-control": "no-cache",
         }
 
     def send_message(self, cellphone: str, message: str) -> str:
         url = f"{self.base_url}/send"
         payload_json = {
-            'senders': ['30007510'],
-            'messages': [message],
-            'recipients': [cellphone],
+            "senders": ["30007510"],
+            "messages": [message],
+            "recipients": [cellphone],
         }
         response = requests.post(url, headers=self.headers, auth=self.auth, json=payload_json)
 

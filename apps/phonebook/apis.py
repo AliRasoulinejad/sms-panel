@@ -8,13 +8,22 @@ from rest_framework.viewsets import GenericViewSet
 
 from apps.phonebook.models import PhoneGroup, Phone
 from apps.phonebook.serializers import (
-    InputPhoneCreateSerializer, OutputPhoneSerializer, InputPhoneUpdateSerializer,
-    InputPhoneGroupCreateSerializer, OutputPhoneGroupSerializer, OutputPhoneGroupWithPhonesSerializer,
+    InputPhoneCreateSerializer,
+    OutputPhoneSerializer,
+    InputPhoneUpdateSerializer,
+    InputPhoneGroupCreateSerializer,
+    OutputPhoneGroupSerializer,
+    OutputPhoneGroupWithPhonesSerializer,
     InputPhoneGroupAddMemberSerializer,
 )
 from apps.phonebook.services.commands import (
-    create_phone, update_phone, delete_phone,
-    create_phone_group, update_phone_group, delete_phone_group, add_members_to_phone_group
+    create_phone,
+    update_phone,
+    delete_phone,
+    create_phone_group,
+    update_phone_group,
+    delete_phone_group,
+    add_members_to_phone_group,
 )
 from apps.phonebook.services.queries import list_phone_group, list_phone, get_phone, get_phone_group
 

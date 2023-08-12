@@ -35,6 +35,7 @@ class OutputPhoneGroupSerializer(serializers.ModelSerializer):
 
 class OutputPhoneGroupWithPhonesSerializer(serializers.ModelSerializer):
     members = OutputPhoneSerializer(many=True, read_only=True)
+
     class Meta:
         model = PhoneGroup
         fields = ("name", "members", "members_count", "created_at", "updated_at")

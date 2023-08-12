@@ -5,7 +5,7 @@ from apps.notification.enums import NotifType
 
 class NotificationFactory(django.DjangoModelFactory):
     class Meta:
-        model = 'apps_notification.Notification'
+        model = "apps_notification.Notification"
 
     notif_type = fuzzy.FuzzyChoice(choices=NotifType.values)
     user_id = fuzzy.FuzzyInteger(low=1, high=3)

@@ -7,7 +7,7 @@ from apps.payments.enums import StatusEnum, GatewayEnum
 
 class PaymentFactory(django.DjangoModelFactory):
     class Meta:
-        model = 'apps_payments.Payment'
+        model = "apps_payments.Payment"
 
     uid = fuzzy.FuzzyText(length=20, chars=string.ascii_letters + string.digits)
     status = fuzzy.FuzzyChoice(choices=StatusEnum.values)

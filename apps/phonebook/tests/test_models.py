@@ -16,6 +16,7 @@ class PhoneModelTest(TestCase):
     def test_phone_str_success(self):
         self.assertEqual(str(self.Phone1), "+989101112233")
 
+
 class PhoneGroupModelTest(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
@@ -24,7 +25,6 @@ class PhoneGroupModelTest(TestCase):
         phone2 = PhoneFactory(name="phone 2", owner_id=user_id)
         cls.PhoneGroup = PhoneGroupFactory(name="phone group 1", owner_id=user_id)
         cls.PhoneGroup.members.add(phone1, phone2)
-
 
     def test_phone_group_str_failure(self):
         self.assertNotEqual(str(self.PhoneGroup), "phone group")

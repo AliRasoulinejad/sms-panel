@@ -10,27 +10,32 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('apps_user', '0001_initial'),
+        ("apps_user", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Payment',
+            name="Payment",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('uid', models.CharField(db_index=True, max_length=20, unique=True)),
-                ('status', models.PositiveSmallIntegerField(choices=[(0, 'Draft'), (1, 'Senttobank'), (2, 'Accepted'), (3, 'Rejected')], default=0)),
-                ('amount', models.PositiveIntegerField()),
-                ('gateway', models.PositiveSmallIntegerField(choices=[(1, 'Mellat')])),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='apps_user.user')),
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("uid", models.CharField(db_index=True, max_length=20, unique=True)),
+                (
+                    "status",
+                    models.PositiveSmallIntegerField(
+                        choices=[(0, "Draft"), (1, "Senttobank"), (2, "Accepted"), (3, "Rejected")], default=0
+                    ),
+                ),
+                ("amount", models.PositiveIntegerField()),
+                ("gateway", models.PositiveSmallIntegerField(choices=[(1, "Mellat")])),
+                ("user", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to="apps_user.user")),
             ],
             options={
-                'verbose_name': 'تراکنش',
-                'verbose_name_plural': 'تراکنش\u200cها',
-                'db_table': 'transactions',
+                "verbose_name": "تراکنش",
+                "verbose_name_plural": "تراکنش\u200cها",
+                "db_table": "transactions",
             },
-            bases=(django_prometheus.models.ExportModelOperationsMixin('payment'), models.Model),
+            bases=(django_prometheus.models.ExportModelOperationsMixin("payment"), models.Model),
         ),
     ]

@@ -1,32 +1,32 @@
 from config.env import env
 
-LOGLEVEL = env.str('LOGLEVEL', 'info').upper()
+LOGLEVEL = env.str("LOGLEVEL", "info").upper()
 
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'formatters': {
-        'default': {
-            'format': '[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] [%(funcName)s] %(message)s',
-            'datefmt': '%Y-%m-%d %H:%M:%S',
+    "version": 1,
+    "disable_existing_loggers": True,
+    "formatters": {
+        "default": {
+            "format": "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] [%(funcName)s] %(message)s",
+            "datefmt": "%Y-%m-%d %H:%M:%S",
         },
     },
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-            'formatter': 'default',
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "default",
         },
     },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': LOGLEVEL,
-            'propagate': False,
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": LOGLEVEL,
+            "propagate": False,
         },
-        'apps': {
-            'handlers': ['console'],
-            'level': LOGLEVEL,
-            'propagate': True,
+        "apps": {
+            "handlers": ["console"],
+            "level": LOGLEVEL,
+            "propagate": True,
         },
     },
 }

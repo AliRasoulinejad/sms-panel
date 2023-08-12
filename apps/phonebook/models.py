@@ -5,7 +5,7 @@ from apps.common.models import BaseModel
 from apps.utils.validators import cellphone_validator
 
 
-class Phone(ExportModelOperationsMixin('phone'), BaseModel):
+class Phone(ExportModelOperationsMixin("phone"), BaseModel):
     name = models.CharField(max_length=50, blank=True)
     phone = models.CharField(max_length=13, validators=[cellphone_validator], editable=False)
     owner = models.ForeignKey("apps_user.User", on_delete=models.CASCADE)
@@ -15,14 +15,13 @@ class Phone(ExportModelOperationsMixin('phone'), BaseModel):
         verbose_name = "شماره موبایل"
         verbose_name_plural = "شماره موبایل ها"
         unique_together = ("phone", "owner")
-        indexes = [
-            models.Index("phone", "owner_id", name="idx_phones_phone_owner_id")
-        ]
+        indexes = [models.Index("phone", "owner_id", name="idx_phones_phone_owner_id")]
 
     def __str__(self):
         return self.phone
 
-class PhoneGroup(ExportModelOperationsMixin('phone_group'), BaseModel):
+
+class PhoneGroup(ExportModelOperationsMixin("phone_group"), BaseModel):
     name = models.CharField(max_length=50)
     members = models.ManyToManyField(Phone, related_query_name="groups")
     owner = models.ForeignKey("apps_user.User", on_delete=models.CASCADE)
