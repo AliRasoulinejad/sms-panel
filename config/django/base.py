@@ -151,3 +151,4 @@ from config.settings.tracing import *  # noqa
 from config.settings.jwt import *  # noqa
 from config.settings.caches import *  # noqad
 from config.settings.sms_modules import *  # noqad
+from config.settings.storage import *  # noqad
