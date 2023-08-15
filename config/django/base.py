@@ -87,14 +87,14 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-postgres = env.json("POSTGRES_DATABASE")
+postgres = env.json("POSTGRES_DATABASE", {})
 DATABASES = {
     "default": {
         "ENGINE": "django_prometheus.db.backends.postgresql",
-        "NAME": postgres.get("NAME"),
-        "USER": postgres.get("USER"),
-        "PASSWORD": postgres.get("PASSWORD"),
-        "HOST": postgres.get("HOST"),
+        "NAME": postgres.get("NAME", "name"),
+        "USER": postgres.get("USER", "postgres"),
+        "PASSWORD": postgres.get("PASSWORD", "postgres"),
+        "HOST": postgres.get("HOST", "localhost"),
         "PORT": postgres.get("PORT", 5432),
     }
 }
