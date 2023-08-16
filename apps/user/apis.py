@@ -10,8 +10,10 @@ from apps.user.serializers import (
     OutputUserSerializer,
     InputUserDocumentSerializer,
     OutputUserDocumentSerializer,
+    InputAuthorizeRequestSerializer,
+    OutputAuthorizeRequestSerializer,
 )
-from apps.user.services.commands import user_register, user_generate_upload_document_url
+from apps.user.services.commands import user_register, user_generate_upload_document_url, user_request_to_authorize
 
 logger = logging.getLogger(__name__)
 
@@ -42,7 +44,7 @@ class UserSelfAPI(APIView):
         return Response(OutputUserSerializer(request.user, context={"request": request}).data)
 
 
-class UploadDocument(APIView):
+class UserUploadDocumentAPI(APIView):
     @extend_schema(request=InputUserDocumentSerializer, responses=OutputUserDocumentSerializer, tags=["users"])
     def post(self, request):
         serializer = InputUserDocumentSerializer(data=request.data)
@@ -53,3 +55,18 @@ class UploadDocument(APIView):
         out.is_valid()
 
         return Response(out.data)
+
+
+class UserAuthorizeAPI(APIView):
+    @extend_schema(request=InputAuthorizeRequestSerializer, responses=OutputAuthorizeRequestSerializer, tags=["users"])
+    def post(self, request):
+        serializer = InputAuthorizeRequestSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        data = serializer.validated_data
+        authorize_request = user_request_to_authorize(
+            user_id=request.user.id,
+            request_type=data["request_type"],
+            data=data["data"],
+        )
+
+        return Response(OutputAuthorizeRequestSerializer(authorize_request, context={"request": request}).data)

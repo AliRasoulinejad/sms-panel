@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from apps.user.enums import PersonTypeEnum
-from apps.user.models import User
+from apps.user.models import User, AuthorizeRequest
 from config.settings.documents import (
     DOCUMENTS_BUCKET,
     DOCUMENTS_UPLOAD_HOURS_EXPIRATION,
@@ -40,3 +40,7 @@ def user_generate_upload_document_url(*, document: str, user_id: int) -> str:
     )
 
     return url
+
+
+def user_request_to_authorize(*, user_id: int, request_type: int, data: str) -> AuthorizeRequest:
+    return AuthorizeRequest.objects.create(user_id=user_id, request_type=request_type, data=data)
