@@ -152,3 +152,4 @@ from config.settings.jwt import *  # noqa
 from config.settings.caches import *  # noqad
 from config.settings.sms_modules import *  # noqad
 from config.settings.storage import *  # noqad
+from config.settings.documents import *  # noqad

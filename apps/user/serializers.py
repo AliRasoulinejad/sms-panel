@@ -28,3 +28,11 @@ class OutputUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ("cellphone", "first_name", "last_name", "email", "person_type")
+
+
+class InputUserDocumentSerializer(serializers.Serializer):
+    document = serializers.CharField(required=True)
+
+
+class OutputUserDocumentSerializer(serializers.Serializer):
+    url = serializers.URLField()
