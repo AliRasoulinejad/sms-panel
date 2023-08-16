@@ -3,8 +3,10 @@ from datetime import datetime
 from django.db import models
 from django_prometheus.models import ExportModelOperationsMixin
 
+from apps.common.fields import JSONSchemaField
 from apps.common.models import BaseModel
 from apps.user.enums import PersonTypeEnum, StatusEnum
+from apps.user.schemas.legal_data import legal_data_schema
 from apps.utils.validators import cellphone_validator
 
 
@@ -29,7 +31,7 @@ class User(ExportModelOperationsMixin("user"), BaseModel):
         "person type", choices=PersonTypeEnum.choices, default=PersonTypeEnum.Real
     )
     status = models.PositiveSmallIntegerField("status", choices=StatusEnum.choices, default=StatusEnum.Deactivate)
-    legal_data = models.JSONField("authorization", default=dict)
+    legal_data = JSONSchemaField("authorization", default=dict, schema=legal_data_schema)
     last_login = models.DateTimeField(default=datetime.now)
 
     objects = UserManager()
