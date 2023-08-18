@@ -7,5 +7,6 @@ from .models import Sender
 class SenderAdmin(admin.ModelAdmin):
     list_display = (
         "number",
-        "status",
+        "owner",
+        "is_shared",
     )

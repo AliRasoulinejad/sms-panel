@@ -1,8 +1,15 @@
 from django.urls import path
 
-from .apis import UserRegisterApi, UserSelfApi
+from .apis import (
+    UserRegisterAPI,
+    UserSelfAPI,
+    UserUploadDocumentAPI,
+    UserAuthorizeAPI,
+)
 
 urlpatterns = [
-    path("register", UserRegisterApi.as_view(), name="register"),
-    path("self", UserSelfApi.as_view(), name="self"),
+    path("register", UserRegisterAPI.as_view(), name="register"),
+    path("self", UserSelfAPI.as_view(), name="self"),
+    path("documents", UserUploadDocumentAPI.as_view(), name="documents"),
+    path("authorize", UserAuthorizeAPI.as_view(), name="authorize"),
 ]

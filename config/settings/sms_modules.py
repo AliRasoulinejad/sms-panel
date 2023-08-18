@@ -10,4 +10,4 @@ sms_module = {
         password=env.str("MAGFA_PASSWORD", default=""),
         domain=env.str("MAGFA_DOMAIN", default=""),
     )
-}[sms_module_type]
+}.get(sms_module_type)

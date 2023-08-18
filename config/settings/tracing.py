@@ -9,14 +9,15 @@ from opentelemetry.sdk.trace.export import BatchSpanProcessor
 
 from config.env import env
 
-DjangoInstrumentor().instrument()
-Psycopg2Instrumentor().instrument()
-LoggingInstrumentor().instrument()
+if env.bool("TRACING_ENABLED", default=False):
+    DjangoInstrumentor().instrument()
+    Psycopg2Instrumentor().instrument()
+    LoggingInstrumentor().instrument()
 
-jaeger_exporter = JaegerExporter(
-    agent_host_name=env.str("JAEGER_HOST"),
-    agent_port=env.int("JAEGER_PORT"),
-)
-trace.set_tracer_provider(TracerProvider(resource=Resource.create({SERVICE_NAME: "sms_panel"})))
-span_processor = BatchSpanProcessor(jaeger_exporter)
-trace.get_tracer_provider().add_span_processor(span_processor)
+    jaeger_exporter = JaegerExporter(
+        agent_host_name=env.str("JAEGER_HOST"),
+        agent_port=env.int("JAEGER_PORT"),
+    )
+    trace.set_tracer_provider(TracerProvider(resource=Resource.create({SERVICE_NAME: "sms_panel"})))
+    span_processor = BatchSpanProcessor(jaeger_exporter)
+    trace.get_tracer_provider().add_span_processor(span_processor)
