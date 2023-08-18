@@ -1,8 +1,8 @@
 from rest_framework import serializers
 
 from apps.utils.validators import cellphone_validator
-from .enums import PersonTypeEnum
-from .models import User
+from .enums import PersonTypeEnum, AuthorizeRequestEnum
+from .models import User, AuthorizeRequest
 
 
 class InputUserRegisterSerializer(serializers.Serializer):
@@ -28,3 +28,25 @@ class OutputUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ("cellphone", "first_name", "last_name", "email", "person_type")
+
+
+class InputUserDocumentSerializer(serializers.Serializer):
+    document = serializers.CharField(required=True)
+
+
+class OutputUserDocumentSerializer(serializers.Serializer):
+    url = serializers.URLField()
+
+
+class InputAuthorizeRequestSerializer(serializers.Serializer):
+    request_type = serializers.ChoiceField(required=True, choices=AuthorizeRequestEnum.choices)
+    data = serializers.JSONField(required=True)
+
+    def validate_data(self, data):
+        return data
+
+
+class OutputAuthorizeRequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AuthorizeRequest
+        fields = ("request_type", "data", "status")
