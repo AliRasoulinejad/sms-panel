@@ -1,6 +1,11 @@
 from django.db.models import IntegerChoices
 
 
+class NumberTypeEnum(IntegerChoices):
+    Promotional = 1
+    Service = 2
+
+
 class RequestStatusEnum(IntegerChoices):
     Requested = 0
     SentToProvider = 1

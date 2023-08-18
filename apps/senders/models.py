@@ -2,13 +2,14 @@ from django.db import models
 from django_prometheus.models import ExportModelOperationsMixin
 
 from apps.common.models import BaseModel
-from .enums import RequestTypeEnum, RequestStatusEnum
+from .enums import RequestTypeEnum, RequestStatusEnum, NumberTypeEnum
 
 
 # TODO: soft delete should handle in future
 # TODO: adding "Audit Log"
 class Sender(ExportModelOperationsMixin("sender"), BaseModel):
     number = models.CharField(max_length=20, db_index=True)
+    number_type = models.PositiveSmallIntegerField(choices=NumberTypeEnum.choices, default=NumberTypeEnum.Promotional)
     owner = models.ForeignKey("apps_user.User", on_delete=models.CASCADE)
     is_shared = models.BooleanField(default=False)
 
@@ -37,7 +38,7 @@ class ShareSender(ExportModelOperationsMixin("share_sender"), BaseModel):
 
 class SenderRequest(ExportModelOperationsMixin("sender_upgrade_request"), BaseModel):
     request_type = models.PositiveSmallIntegerField(choices=RequestTypeEnum.choices)
-    sender = models.ForeignKey(Sender, on_delete=models.CASCADE)
+    sender = models.ForeignKey(Sender, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey("apps_user.User", on_delete=models.CASCADE)
     status = models.PositiveSmallIntegerField(choices=RequestStatusEnum.choices, default=RequestStatusEnum.Requested)
 
